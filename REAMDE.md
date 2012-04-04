@@ -1,25 +1,11 @@
-## Mysql Anonymous
+# Mozillians Mysql Anonymous #
 
-Contributors can benefit from having real data when they are
-developing.  This script can do a few things (see `anonymize.yml`):
+Based on @davedash's
+[Mysql Anonymous](https://github.com/davedash/mysql-anonymous), this script
+simply filters out sensitive data from a Mozillians MySQL dump so developers
+can have production-like data without sensitive user data.
 
-* Truncate any tables (logs, and other cruft which may have sensitive data)
-* Nullify fields (emails, passwords, etc)
-* Fill in random/arbitrary data:
-    * Random integers
-    * Random IP addresses
-    * Email addresses
-    * Usernames
-* Delete rows based on simple rules:  e.g.
-  ``DELETE FROM mytable WHERE private = "Yes"``:
-
-    database:
-        tables:
-            mytable:
-                delete:
-                    private: Yes
-
-### Usage
+## Usage ##
 
     python anonymize.py > anon.sql
     cat anon.sql | mysql
